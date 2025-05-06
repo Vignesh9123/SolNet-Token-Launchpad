@@ -93,17 +93,20 @@ function Launchpad() {
         associatedToken,
         publicKey,
         keyPair.publicKey,
-        TOKEN_2022_PROGRAM_ID,
-    ),
-);
-
-await sendTransaction(transaction2, connection);
-console.log('ATA Created',associatedToken.toBase58());
-const transaction3 = new Transaction().add(
-  createMintToInstruction(keyPair.publicKey, associatedToken,publicKey, LAMPORTS_PER_SOL * 1000000, [], TOKEN_2022_PROGRAM_ID)
-);
-
-await sendTransaction(transaction3, connection);
+        TOKEN_2022_PROGRAM_ID
+      ),
+      createMintToInstruction(
+        keyPair.publicKey,
+        associatedToken,
+        publicKey,
+        LAMPORTS_PER_SOL * 1000000,
+        [],
+        TOKEN_2022_PROGRAM_ID
+      )
+    );
+    
+    await sendTransaction(transaction2, connection);
+    
 console.log("Minted",1000000,metadata.symbol,"to",associatedToken.toBase58())
 }
 
